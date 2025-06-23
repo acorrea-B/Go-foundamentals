@@ -20,14 +20,19 @@ func main() {
 	fmt.Print("Years: ")
 	fmt.Scan(&years)
 
-	futureValue := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
-	futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+	futureValue := investmentAmount * calculatePow(expectedReturnRate, years)
+	futureRealValue := futureValue / calculatePow(inflationRate, years)
 
 	// formattedFV := fmt.Sprintf("Future Value: %.2f\n", futureValue)
 	// formattedRFV := fmt.Sprintf("nFuture Value Adjusted: %.2f\n", futureRealValue)
 
-	fmt.Printf(`Future Value: %.2f\n
-	Future Value Adjusted: %.2f`, futureValue, futureRealValue)
+	fmt.Printf(`Future Value: %.2f
+		Future Value Adjusted: %.2f`,
+		futureValue, futureRealValue)
 
 	// fmt.Print(formattedFV, formattedRFV)
+}
+
+func calculatePow(x, y float64) float64 {
+	return math.Pow(1+x/100, y)
 }
