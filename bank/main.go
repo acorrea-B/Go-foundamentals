@@ -2,35 +2,16 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strconv"
 )
 
 const accountBalanceFile = "balance.txt"
-
-func getBalanceFromFile() float64 {
-	data, _ := os.ReadFile(accountBalanceFile)
-	balanceText := string(data)
-	balance, _ := strconv.ParseFloat(balanceText, 64)
-	return balance
-}
-
-func writeBalanceToFile(balance float64) {
-	balnceText := fmt.Sprint(balance)
-	os.WriteFile(accountBalanceFile, []byte(balnceText), 0644)
-}
 
 func main() {
 	// condicionalBankOptions(accountBalance)
 	for {
 		var accountBalance = getBalanceFromFile()
 
-		fmt.Println("Welcome to Go Bank!")
-		fmt.Println("What do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Desposit money")
-		fmt.Println("3. Withdraw money")
-		fmt.Println("4. Exit")
+		optionsMessage()
 
 		var choice int
 		fmt.Print("Your choice: ")
