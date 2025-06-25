@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+
+	"example.co/bank/utilities"
 )
 
 const accountBalanceFile = "balance.txt"
@@ -9,7 +11,7 @@ const accountBalanceFile = "balance.txt"
 func main() {
 	// condicionalBankOptions(accountBalance)
 	for {
-		var accountBalance = getBalanceFromFile()
+		var accountBalance = utilities.GetFloatFromFile(accountBalanceFile)
 
 		optionsMessage()
 
@@ -30,7 +32,7 @@ func main() {
 			}
 			accountBalance += depositAmount
 			fmt.Println("Balance updated! New amount: ", accountBalance)
-			writeBalanceToFile(accountBalance)
+			utilities.WriteFloatToFile(accountBalance, accountBalanceFile)
 		case 3:
 			var withdrawAmount float64
 			fmt.Print("Withdwa amount: ")
@@ -46,7 +48,7 @@ func main() {
 			}
 			accountBalance -= withdrawAmount
 			fmt.Println("Balance updated! New amount: ", accountBalance)
-			writeBalanceToFile(accountBalance)
+			utilities.WriteFloatToFile(accountBalance, accountBalanceFile)
 		default:
 			fmt.Println("Good bye!")
 			fmt.Println("Thanks for visit your bank.")
