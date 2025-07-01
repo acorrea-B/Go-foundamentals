@@ -23,8 +23,8 @@ func (u *User) ClearUserName() {
 	u.lastName = ""
 }
 
-// NewUser is a constructor function that initializes a User instance.
-func NewUser(firstName, lastName, birthdate string) (*User, error) {
+// New is a constructor function that initializes a User instance.
+func New(firstName, lastName, birthdate string) (*User, error) {
 	if firstName == "" || lastName == "" || birthdate == "" {
 		return nil, errors.New("all fields must be provided")
 	}
