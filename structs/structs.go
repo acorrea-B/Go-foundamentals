@@ -21,14 +21,20 @@ func (u *User) clearUserName() {
 	u.lastName = ""
 }
 
-func main() {
-	var appUser User
-	appUser = User{
-		firstName: "John",
-		lastName:  "Doe",
-		birthdate: "1990-01-01",
+func newUser(firstName, lastName, birthdate string) *User {
+	return &User{
+		firstName: firstName,
+		lastName:  lastName,
+		birthdate: birthdate,
 		createdAt: time.Now(),
 	}
+}
+
+func main() {
+	var appUser *User
+	appUser = newUser("John", "Doe", "1990-01-01")
+
+	fmt.Println(appUser.String())
 	appUser.clearUserName()
 	fmt.Println(appUser.String())
 }
