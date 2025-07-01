@@ -7,22 +7,34 @@ import (
 	"strings"
 
 	"explame.com/note/model"
+	"explame.com/note/todo"
 )
 
 func main() {
 	note, err := getNoteData()
-	if err != nil {
-		fmt.Println("Error:", err)
+	todoText := getUserImput("Todo text:")
+	todo, tod_err := todo.New(todoText)
+
+	if err != nil || tod_err != nil {
+		fmt.Println("Error:", err, tod_err)
 		return
 	}
 	fmt.Println("Note created successfully!")
 	fmt.Println(note.String())
+	fmt.Println("Todo created successfully!")
+	fmt.Println(todo.Display())
 	err = note.Save()
 	if err != nil {
 		fmt.Println("Error saving note:", err)
 		return
 	}
 	fmt.Println("Note saved succeeded!")
+	err = todo.Save()
+	if err != nil {
+		fmt.Println("Error saving todo:", err)
+		return
+	}
+	fmt.Println("Todo saved succeeded!")
 
 }
 
