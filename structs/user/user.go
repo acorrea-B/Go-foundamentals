@@ -13,6 +13,12 @@ type User struct {
 	createdAt time.Time
 }
 
+type Admin struct {
+	email    string
+	password string
+	User     // Embedding User struct
+}
+
 // Method for User struct, prints the user details
 func (u *User) String() string {
 	return fmt.Sprintf("Name: %s %s, Birthdate: %s, Created At: %s", u.firstName, u.lastName, u.birthdate, u.createdAt.Format(time.RFC3339))
@@ -34,4 +40,18 @@ func New(firstName, lastName, birthdate string) (*User, error) {
 		birthdate: birthdate,
 		createdAt: time.Now(),
 	}, nil
+}
+
+func NewAdmin(email, password, firstName, lastName, birthdate string) *Admin {
+
+	return &Admin{
+		email:    email,
+		password: password,
+		User: User{
+			firstName: firstName,
+			lastName:  lastName,
+			birthdate: birthdate,
+			createdAt: time.Now(),
+		},
+	}
 }
